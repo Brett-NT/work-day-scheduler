@@ -2,49 +2,40 @@ var currentDay = document.getElementById('currentDay');
 var timeBlock = document.getElementById('time-block');
 var hour = document.getElementsByClassName('hour');
 var userInput = document.getElementsByClassName('input');
-const nine = document.querySelector('#nine').innerText;
-const ten = document.querySelector('#ten');
-const eleven = document.querySelector('#eleven');
-const twelve = document.querySelector('#twelve').textContent;
-const thirteen = document.querySelector('#thirteen');
-const fourteen = document.querySelector('#fourteen');
-const fifteen = document.querySelector('#fifteen');
-const sixteen = document.querySelector('#sixteen');
-const seventeen = document.querySelector('#seventeen');
+var military = document.getElementsByClassName('military');
 
-console.log(moment().calendar());
-console.log(moment().format('HH'));
+var hourArray = [9, 10, 11, 12, 13, 14, 15, 16, 17]
+var hourLength = hourArray.length;
 
+for (i = 0; i < hourLength; i++) {
+    $('<div class="military" />').text(hourArray[i]).appendTo('body');
+}
 
 currentDay.innerText = moment().format("MMM Do YYYY");
 
 var currentHour = moment().format('LT');
 
-var currentTime = parseInt(currentHour);
-var firstHour = parseInt(hour);
-var secondHour = parseInt(ten);
-var thirdHour = parseInt(eleven);
-var fourthHour = parseInt(twelve);
-var fifthHour = parseInt(thirteen);
-var sixthHour = parseInt(fourteen);
-var seventhHour = parseInt(fifteen);
-var eighthHour = parseInt(sixteen);
-var ninthHour = parseInt(seventeen);
 
-console.log(fourthHour);
-console.log(twelve);
+var currentTime = parseInt(currentHour);
+var militaryHour = parseInt(hourArray[i]);
+
+console.log(militaryHour);
 console.log(currentTime);
 
-for (i = hour; i > 24; i++) {
-    if (hour > currentHour) {
-        $("input").addClass('future');
-    } else if (hour == currentHour) {
-        $("input").addClass('present');
-    } else {
-        $("input").addClass('past');
-    }
+if (militaryHour > currentHour) {
+    $(".input").addClass('future');
+} else if (militaryHour == currentHour) {
+    $(".input").addClass('present');
+} else {
+    $(".input").addClass('past');
 }
 
-$("saveBtn").click(function() {
 
+$(".saveBtn").click(function(event) {
+    event.preventDefault();
+    localStorage.setItem("task", userInput.innerText);
+    JSON.stringify("task");
+    console.log(localStorage);
+    userInput.innerText = localStorage.getItem('task');
 });
+

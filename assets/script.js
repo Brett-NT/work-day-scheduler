@@ -94,4 +94,3 @@ $(".saveBtn").click(function(event) {
     console.log(localStorage);
     userInput.innerText = localStorage.getItem('task');
 });
-
